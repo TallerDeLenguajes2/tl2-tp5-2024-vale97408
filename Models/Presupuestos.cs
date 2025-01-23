@@ -24,13 +24,22 @@ public class Presupuesto
         this.FechaCreacion = fechaCreacion;
     }
 
+    public Presupuesto(int idPresupuesto, string nombreDestinatario, DateTime fechaCreacion)
+    {
+        this.IdPresupuesto = idPresupuesto;
+        this.NombreDestinatario = nombreDestinatario;
+        this.FechaCreacion = fechaCreacion;
+        this.Detalles = new List<PresupuestosDetalle>(); // Para evitar el error
+    }
+
+
 
     public double MontoPresupuesto()
     {
         double monto = 0;
         foreach (var det in detalles)
         {
-            monto+= det.Producto.Precio * det.Cantidad;
+            monto += det.Producto.Precio * det.Cantidad;
         }
 
         return monto;
@@ -39,15 +48,15 @@ public class Presupuesto
 
     public double MontoPresupuestoConIva()
     {
-        return MontoPresupuesto()* 1.21;
+        return MontoPresupuesto() * 1.21;
     }
 
     public int CantidadProductos()
     {
-        int cant=0;
+        int cant = 0;
         foreach (var det in detalles)
         {
-            cant+= det.Cantidad;
+            cant += det.Cantidad;
         }
         return cant;
     }
