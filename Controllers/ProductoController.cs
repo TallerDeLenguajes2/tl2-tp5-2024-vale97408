@@ -5,6 +5,12 @@ namespace MiWebAPI.Controllers;
 [Route("[controller]")]
 public class ProductoController : ControllerBase
 {
+    [HttpPost("AgregarProducto")]
+    public ActionResult<Producto> CrearProducto(Producto producto){
+        var repo = new ProductoRepository();
+        repo.CrearProducto(producto);
+        return Ok();
+    } 
 
     [HttpGet("ObtenerProductos")]
     public ActionResult<List<Producto>> ObtenerProductos(){
@@ -19,11 +25,6 @@ public class ProductoController : ControllerBase
         return Ok();
     }
 
-    [HttpPost("AgregarProducto")]
-    public ActionResult<Producto> CrearProducto(Producto producto){
-        var repo = new ProductoRepository();
-        repo.CrearProducto(producto);
-        return Ok();
-    } 
+
 
 }
